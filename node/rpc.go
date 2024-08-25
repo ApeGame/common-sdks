@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-const baseURL = "http://127.0.0.1:8080"
+const baseURL = "https://common-service.mobus.workers.dev"
 
 func GetChainIdByName(chainName string) (string, error) {
 	resp, err := http.Get(fmt.Sprintf("%s/chain/id?chain_name=%s", baseURL, chainName))
@@ -29,14 +29,17 @@ func GetChainIdByName(chainName string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	type respSchema struct {
+	type resultSchema struct {
 		ChainId string `json:"chain_id"`
+	}
+	type respSchema struct {
+		Result resultSchema `json:"result"`
 	}
 	var r respSchema
 	if err := json.Unmarshal(body, &r); err != nil {
 		return "", err
 	}
-	return r.ChainId, nil
+	return r.Result.ChainId, nil
 }
 
 func GetChainNameById(chainId string) (string, error) {
@@ -57,12 +60,15 @@ func GetChainNameById(chainId string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	type respSchema struct {
+	type resultSchema struct {
 		ChainName string `json:"chain_name"`
+	}
+	type respSchema struct {
+		Result resultSchema `json:"result"`
 	}
 	var r respSchema
 	if err := json.Unmarshal(body, &r); err != nil {
 		return "", err
 	}
-	return r.ChainName, nil
+	return r.Result.ChainName, nil
 }
