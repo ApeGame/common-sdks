@@ -14,6 +14,7 @@ const baseURL = "https://common-service.mobus.workers.dev"
 type UserInfo struct {
 	Avatar   string
 	Nickname string
+	Bio      string
 }
 
 func GenerateUsrInfo() (*UserInfo, error) {
@@ -38,6 +39,7 @@ func GenerateUsrInfo() (*UserInfo, error) {
 	type resultSchema struct {
 		ImageUrl string `json:"image_url"`
 		Nickname string `json:"nickname"`
+		Bio      string `json:"bio"`
 	}
 	type respSchema struct {
 		Result resultSchema `json:"result"`
@@ -50,5 +52,6 @@ func GenerateUsrInfo() (*UserInfo, error) {
 	return &UserInfo{
 		Avatar:   r.Result.ImageUrl,
 		Nickname: r.Result.Nickname,
+		Bio:      r.Result.Bio,
 	}, nil
 }
