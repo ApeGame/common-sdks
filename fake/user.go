@@ -109,10 +109,10 @@ func generateSourceTwo(amount int) ([]*UserInfo, error) {
 					Number int    `json:"number"`
 					Name   string `json:"name"`
 				} `json:"street"`
-				City        string `json:"city"`
-				State       string `json:"state"`
-				Country     string `json:"country"`
-				Postcode    int    `json:"postcode"`
+				City        string      `json:"city"`
+				State       string      `json:"state"`
+				Country     string      `json:"country"`
+				Postcode    interface{} `json:"postcode"`
 				Coordinates struct {
 					Latitude  string `json:"latitude"`
 					Longitude string `json:"longitude"`
@@ -185,9 +185,9 @@ func generateSourceTwo(amount int) ([]*UserInfo, error) {
 		case 3:
 			bio = fmt.Sprintf(`I'm %d years old'`, r.Dob.Age)
 		case 4:
-			bio = fmt.Sprintf(`I use %s time. Which is %s, What about you?`, r.Location.Timezone.Description, r.Location.Timezone.Offset)
+			bio = fmt.Sprintf(`I use %s time. Which is UTC %s, What about you?`, r.Location.Timezone.Description, r.Location.Timezone.Offset)
 		case 5:
-			bio = fmt.Sprintf(`Send me a gift! My Address is No %d, Street %s, %s, %s. Postcode: %d`, r.Location.Street.Number, r.Location.Street.Name, r.Location.City, r.Location.State, r.Location.Postcode)
+			bio = fmt.Sprintf(`Send me a gift! My Address is No %d, Street %s, %s, %s. Postcode: %v`, r.Location.Street.Number, r.Location.Street.Name, r.Location.City, r.Location.State, r.Location.Postcode)
 		}
 
 		users = append(users, &UserInfo{

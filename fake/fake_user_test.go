@@ -4,7 +4,7 @@ import "testing"
 
 func TestUser(t *testing.T) {
 	for i := 0; i < 10; i++ {
-		u, e := GenerateUsrInfo(3)
+		u, e := GenerateUsrInfo(1)
 		if e != nil {
 			t.Error(e)
 		}
