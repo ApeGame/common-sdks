@@ -177,13 +177,13 @@ func generateSourceTwo(amount int) ([]*UserInfo, error) {
 		var bio string
 		switch randNumber % 6 {
 		case 0:
-			bio = fmt.Sprintf(`I'm from %s'`, r.Location.Country)
+			bio = fmt.Sprintf(`I'm from %s`, r.Location.Country)
 		case 1:
 			bio = fmt.Sprintf(`I am living in %s,%s`, r.Location.City, r.Location.State)
 		case 2:
-			bio = fmt.Sprintf(`My birthday is %s'`, r.Dob.Date.Format("Jan _2 2006"))
+			bio = fmt.Sprintf(`My birthday is %s`, r.Dob.Date.Format("Jan _2 2006"))
 		case 3:
-			bio = fmt.Sprintf(`I'm %d years old'`, r.Dob.Age)
+			bio = fmt.Sprintf(`I'm %d years old`, r.Dob.Age)
 		case 4:
 			bio = fmt.Sprintf(`I use %s time. Which is UTC %s, What about you?`, r.Location.Timezone.Description, r.Location.Timezone.Offset)
 		case 5:
